@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h2><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h2>
+{% endblock header %}
+
+{% block content %}
+  <form action="{% url 'learning_logs:new_entry2' topic.id %}" method='post'>
+    {% csrf_token %}
+    <h4>标题：</h4>
+    <input class="form-control" style="width:670px" name="title" id="id_title" cols="80" rows="10" required="" >
+    <h4>内容:</h4>
+
+    <textarea class="form-control" style="resize:none;width:670px; height:250px" name="text" id="id_text" cols="80" rows="10" required="" ></textarea>
+    <hr>
+    <button id="new_entry2" class="btn btn-primary" name="submit">添加内容</button>
+  </form>
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>
+      主题
+      <div class="pull-right">
+          <small>
+              <button class="btn btn-default" href="{% url 'learning_logs:new_topic' %}" data-toggle="modal" data-target="#new_topic" id="new_topic1">新建主题</button>
+          </small>
+      </div>
+
+      <div class="modal fade" id="new_topic" tabindex="-1" role="dialog" aria-labelledby="new_topic" aria-hidden="true">
+      <div class="modal-dialog" style="width:700px">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+  </h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+{% for topic in topics %}
+
+    <div class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <a href="{% url 'learning_logs:topic' topic.id %}" style="color:black;text-decoration:none;" onmouseover="this.style.text-decoration=none">{{ topic }}</a>
+          <br/>
+          <small>
+          {{ topic.date_added|date:'Y-m-d D H:i' }}
+          </small>
+        </h3>
+      </div>
+    </div>
+    </div>
+
+    {% empty %}
+      <li>目前没有任何主题</li>
+{% endfor %}
+
+    </div>
+</div>
+
+{% endblock content %}

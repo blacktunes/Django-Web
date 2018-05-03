@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h2><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h2>
+{% endblock header %}
+
+{% block content %}
+
+
+    <form action="{% url 'learning_logs:edit_entry2' entry.id %}" method='post'>
+        {% csrf_token %}
+        <h4>标题：</h4>
+        <textarea class="form-control" cols="40" id="id_title" name="title" rows="10" required="" style="resize:none;width:670px;height:34px">{{ entry.title }}</textarea>
+        <h4>内容:</h4>
+        <textarea class="form-control" cols="40" id="id_text" name="text" rows="10" required="" style="resize:none;width:670px;height:250px">{{ entry.text }}</textarea>
+        <hr>
+        <button class="btn btn-primary" name="submit">保存修改</button>
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h2>游戏简介</h2>
+{% endblock header %}
+
+{% block content %}
+  {% for about in abouts %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h3>
+    {{ about.title }}
+  </h3>
+  </div>
+  <div class="panel-body">
+    {% autoescape off %}
+      {{ about.text }}
+    {% endautoescape %}
+  </div>
+</div>
+  {% empty %}
+  <h4>然而我并没有写简介</h4>
+  {% endfor %}
+
+{% endblock %}

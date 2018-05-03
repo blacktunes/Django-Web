@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h2>留言板<small>(测试版)</small></h2>
+{% endblock %}
+
+{% block content %}
+
+<ul class="list-unstyled">
+  {% for message_board in message_board_list reversed %}
+  <li>
+    <div>
+      #{{forloop.revcounter}}
+    </div>
+    <time class="submit-date">{{ message_board.created_time }}</time>
+    <span class="nickname"> - <b>{{ message_board.name }}</b></span>
+    <div class="text">
+      {{ message_board.text }}
+      <hr/>
+    </div>
+  </li>
+  {% empty %}
+  <h4>现在还没有任何留言</h4>
+  {% endfor %}
+</ul>
+
+<br/>
+
+<form action="{% url 'message_board:message_board' %}" method="post">
+  {% csrf_token %}
+    <div class="row">
+      <div class="col-md-4">
+        <label for="id_name">昵称：</label>
+      <br>
+      <input class="form-control" name="name" maxlength="100" required="" id="id_name" type="text">
+      </div>
+    </div>
+
+    <div>
+      <label for="id_text">留言：</label>
+      <br/>
+      <textarea class="form-control" name="text" cols="40" rows="10" required="" id="id_text" style="resize:none;width: 361px; height: 130px"></textarea>
+      <br/>
+      <button id="message" type="submit" class="btn btn-primary">发表</button>
+    </div>
+  </form>    <!-- row -->
+
+{% endblock content %}

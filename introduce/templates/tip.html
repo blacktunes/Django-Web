@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <ul>
+      <h2>操作方式<br/><small>确认: Z/鼠标左键<br/>取消: X/鼠标右键<br/>移动: 方向键/鼠标点击</small></h2>
+  </ul>
+
+{% endblock %}
+
+{% block content %}
+  {% for tip in tips %}
+    {% autoescape off %}
+      {{ tip.text }}
+    {% endautoescape %}
+  {% endfor %}
+
+<hr/>
+<ul>
+    <h1>
+      <a href="http://www.feizhouxianyu.cn:8080/" target="_blank">
+      <button>点我变身金傲城</button>
+      </a>
+    </h1>
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">新建主题:</h4>
+</div>
+
+<div class="modal-body" >
+  <form action="{% url 'learning_logs:new_topic' %}" method='post' class="form">
+    {% csrf_token %}
+    <input class="form-control" style="width:670px" name="text" id="id_text" cols="80" rows="10" required="" >
+    <br/>
+    <button id="new_topic" name="submit" class="btn btn-primary">确定</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+  </form>
+</div>
