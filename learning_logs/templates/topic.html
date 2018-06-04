@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h2>
-      {{ topic }}
-      <div class="pull-right">
-          <small>
+<h1><a href="{% url 'learning_logs:topics' %}" style="color:black;text-decoration:none;vertical-align:middle" onmouseover="this.style.text-decoration=none">{{ topic }}</a></h1>
+          <!--
           <div class="btn-group">
-              <button type="button" class="btn btn-default" href="{% url 'learning_logs:new_entry' topic.id %}" data-toggle="modal" data-target="#new_entry" id="new_entry1">添加内容</button>
+          -->
+              <button type="button" class="button button-rounded button-inverse" href="{% url 'learning_logs:new_entry' topic.id %}" data-toggle="modal" data-target="#new_entry" id="new_entry1">添加内容</button>
+              <!--
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                   <span class="sr-only">切换下拉菜单</span>
@@ -17,16 +17,14 @@
                   </li>
               </ul>
           </div>
+          -->
 
-              <div class="modal fade" id="new_entry" tabindex="-1" role="dialog" aria-labelledby="new_entry" aria-hidden="true">
+              <div class="modal fade" id="new_entry" tabindex="-1" role="dialog" aria-labelledby="new_entry" aria-hidden="true" style="top:13%;left:3%;">
                   <div class="modal-dialog" style="width:700px">
                       <div class="modal-content"></div>
                   </div>
               </div>
 
-          </small>
-      </div>
-  </h2>
 {% endblock header %}
 
 {% block content %}
@@ -43,9 +41,10 @@
             <a href="{% url 'learning_logs:del_entry' entry.id %}">
               删除</a>
               -->
-            <div class="pull-right">
+                <!--
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" href="{% url 'learning_logs:edit_entry' entry.id %}" data-toggle="modal" data-target="#edit_entry">修改</button>
+                -->
+                    <!--
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">切换下拉菜单</span>
@@ -56,25 +55,28 @@
                         </li>
                     </ul>
                 </div>
+                -->
 
-                <div class="modal fade" id="edit_entry" tabindex="-1" role="dialog" aria-labelledby="edit_entry" aria-hidden="true">
+                <div class="modal fade" id="edit_entry" tabindex="-1" role="dialog" aria-labelledby="edit_entry" aria-hidden="true" style="top:13%;left:3%;">
                     <div class="modal-dialog" style="width:700px">
                         <div class="modal-content"></div>
                     </div>
                 </div>
-            </div>
         </h3>
       </div>
 
        <div id="{{ entry.id }}" class="panel-collapse collapse">
         <div class="panel-body">
-        <b>
+        <h3>
           {{ entry.title }}
-        </b>
+        </h3>
         <hr/>
+            <div style="max-width:600px;margin: 0 auto;text-align:left;">
         {% autoescape off %}
         {{ entry.text|linebreaks }}
         {% endautoescape %}
+            </div>
+        <button type="button" class="button button-tiny" href="{% url 'learning_logs:edit_entry' entry.id %}" data-toggle="modal" data-target="#edit_entry">修改</button>
       </div>
        </div>
     </div> <!-- panel -->

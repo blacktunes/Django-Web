@@ -6,16 +6,16 @@
 {% endblock %}
 
 {% block content %}
-    
+   <div style="width:400px;margin:0 auto;">
   <form method="post" action="{% url 'users:login' %}" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
 
     {% buttons %}
-      <button name="submit" class="btn btn-primary">登录</button>
+      <button name="submit" class="button button-rounded button-inverse">登录</button>
     {% endbuttons %}
     
     <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
   </form>
-    
+    </div>
 {% endblock content %}

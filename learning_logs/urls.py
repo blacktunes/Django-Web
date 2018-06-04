@@ -17,6 +17,6 @@ urlpatterns = [
     url(r'^new_entry2/(?P<topic_id>\d+)/$', views.new_entry2, name='new_entry2'),
     url(r'^edit_entry2/(?P<entry_id>\d+)/$', views.edit_entry2,
         name='edit_entry2'),
-
+    url(r'^test/$', views.test, name='test'),
 ]
 

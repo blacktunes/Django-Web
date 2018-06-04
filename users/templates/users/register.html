@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+   <div style="width:400px;margin:0 auto;text-align:left;">
     <form method="post" action="{% url 'users:register' %}">
         {% csrf_token %}
         <div class="form-group">
@@ -44,10 +44,12 @@
             <li>邮箱可以不填。</li>
         </ul>
         </div>
-
-        <button id="register" class="btn btn-primary" name="submit">注册</button>
+<div style="text-align:center">
+        <button id="register" class="button button-rounded button-inverse" name="submit">注册</button>
         <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+    </div>
     </form>
+   </div>
 
     <br/>
         {% autoescape off %}

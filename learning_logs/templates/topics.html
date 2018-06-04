@@ -1,20 +1,15 @@
 {% extends "base.html" %}
 
 {% block header %}
-  <h1>
-      主题
-      <div class="pull-right">
-          <small>
-              <button class="btn btn-default" href="{% url 'learning_logs:new_topic' %}" data-toggle="modal" data-target="#new_topic" id="new_topic1">新建主题</button>
-          </small>
-      </div>
+  <h1>主题</h1>
+<a class="button button-rounded button-inverse" href="{% url 'learning_logs:new_topic' %}" data-toggle="modal" data-target="#new_topic" id="new_topic1">新建主题</a>
 
-      <div class="modal fade" id="new_topic" tabindex="-1" role="dialog" aria-labelledby="new_topic" aria-hidden="true">
+      <div class="modal fade" id="new_topic" tabindex="-1" role="dialog" aria-labelledby="new_topic" aria-hidden="true" style="top:20%;left:3%;">
       <div class="modal-dialog" style="width:700px">
         <div class="modal-content"></div>
       </div>
     </div>
-  </h1>
+
 {% endblock %}
 
 {% block content %}

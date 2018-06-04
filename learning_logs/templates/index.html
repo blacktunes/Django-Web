@@ -2,28 +2,23 @@
 
 {% block header %}
 
-  <div class='jumbotron'>
-      <h1>这是一个没啥用的网站<br/><small>或许还是<a href="{% url 'introduce:tip' %}">金傲城</a>的官网？</small></h1>
-  </div>
+
 {% endblock %}
 
 {% block content %}
-<ul>
-<h4>网站还顺便附带了笔记功能，<a href="{% url 'users:register' %}">注册</a>后即可使用</h4>
-</ul>
-<hr/>
-<ul>
+<div style="max-width:500px;margin: 0 auto;">
+<img src="/static/new/images/t1.jpg"/>
+</div>
+<br/><br/><br/><br/>
+        <h4>网站还顺便附带了笔记功能，<a href="{% url 'users:register' %}" style="color:black;">注册</a>后即可使用</h4>
+        <hr/>
     <h4>除了<b>金傲城</b>还有其实一个非常**的小游戏，点一下下面的按钮就好了，欢迎挑战排行榜<small><br/>游戏由某不愿提供姓名的猫制作</small></h4>
     <h4>
         <a href="http://119.29.201.16/game/" target="_blank" id="bcat1">
-            <button class="btn btn-default">我是按钮</button>
+            <button class="button button-rounded button-inverse">我是按钮</button>
         </a>
     </h4>
-</ul>
 <hr/>
-<ul>
 <audio src="media/bgm.mp3" controls="controls"></audio>
 <p style="color:#999999">清廉なるHeretics</p>
-</ul>
-
 {% endblock %}

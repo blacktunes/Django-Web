@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %}
-  <h2>留言板<small>(测试版)</small></h2>
+  <h1>留言板</h1>
 {% endblock %}
 
 {% block content %}
@@ -26,23 +26,17 @@
 
 <br/>
 
+<div style="width:350px;margin:0 auto;">
 <form action="{% url 'message_board:message_board' %}" method="post">
   {% csrf_token %}
-    <div class="row">
-      <div class="col-md-4">
-        <label for="id_name">昵称：</label>
+  <label for="id_name">昵称：</label>
       <br>
-      <input class="form-control" name="name" maxlength="100" required="" id="id_name" type="text">
-      </div>
-    </div>
-
-    <div>
+      <input name="name" maxlength="100" required="" id="id_name" type="text" class="form-control">
       <label for="id_text">留言：</label>
       <br/>
-      <textarea class="form-control" name="text" cols="40" rows="10" required="" id="id_text" style="resize:none;width: 361px; height: 130px"></textarea>
+      <textarea name="text" cols="40" rows="10" required="" id="id_text" class="form-control" style="height:150px;"></textarea>
       <br/>
-      <button id="message" type="submit" class="btn btn-primary">发表</button>
-    </div>
+      <button id="message" type="submit" class="button button-rounded button-inverse">发表</button>
   </form>    <!-- row -->
-
+</div>
 {% endblock content %}

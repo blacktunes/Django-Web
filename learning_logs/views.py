@@ -141,3 +141,6 @@ def del_entry(request, entry_id):
 
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'edit_entry.html', context)
+
+def test(request):
+    return render(request, 'test.html')
