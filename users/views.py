@@ -3,6 +3,15 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import logout, login, authenticate
 from .forms import RegisterForm
+import datetime
+
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.response import Response
+
+from django.contrib.auth.models import User
+from .serializers import *
+
 
 def logout_view(request):
     logout(request)
@@ -28,3 +37,32 @@ def register(request):
 
     context = {'form': form}
     return render(request, 'users/register.html', context)
+
+
+@api_view(['GET', 'POST'])
+def user_api(request):
+    # if request.method == 'GET':
+    #     content = User.objects.all()
+    #     serializer = UserSerializer(content, many=True)
+    #     return Response(serializer.data)
+    if request.method == 'POST':
+        content = User.objects.all()
+        serializer = UserSerializer(content, many=True)
+        for i in serializer.data:
+            if request.data['username'] == i['username']:
+                authenticated_user = authenticate(username=request.data['username'], password=request.data['password'])
+                if authenticated_user:
+                    date = datetime.datetime.now()
+                    User.objects.filter(username=request.data['username']).update(last_login=date)
+                    return Response({'isLogin': True, 'userId': i['id']})
+                else:
+                    return Response('登录失败')
+        return Response('无此用户')
+
+
+@api_view(['GET', 'POST'])
+def last_login_api(request):
+    if request.method == 'POST':
+        date = datetime.datetime.now()
+        User.objects.filter(username=request.data['username']).update(last_login=date)
+        return Response()

@@ -10,4 +10,6 @@ urlpatterns = [
         name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
     url(r'^register/$', views.register, name='register'),
+    url(r'^api', views.user_api, name='user_api'),
+    url(r'^last_login/api', views.last_login_api, name='last_login_api')
 ]

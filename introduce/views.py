@@ -1,5 +1,11 @@
 from django.shortcuts import render
+
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.response import Response
+
 from .models import *
+from .serializers import *
 
 
 def update_log(request):
@@ -18,3 +24,27 @@ def tip(request):
     tips = Tip.objects.filter()
     context = {'tips': tips}
     return render(request, 'tip.html', context)
+
+
+@api_view(['GET', 'POST'])
+def about_api(request):
+    if request.method == 'GET':
+        content = About.objects.all()
+        serializer = AboutSerializer(content, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def gamename_api(request):
+    if request.method == 'GET':
+        content = GameName.objects.all()
+        serializer = NameSerializer(content, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def update_log_api(request):
+    if request.method == 'GET':
+        content = UpdateLog.objects.all()
+        serializer = UpdateLogSerializer(content, many=True)
+        return Response(serializer.data)

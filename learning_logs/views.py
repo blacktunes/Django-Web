@@ -3,9 +3,14 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from introduce.models import About
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.response import Response
+
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+from .serializers import *
+
 
 
 def index(request):
@@ -142,5 +147,58 @@ def del_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'edit_entry.html', context)
 
-def test(request):
-    return render(request, 'test.html')
+
+@api_view(['GET', 'POST'])
+def topic_api(request):
+    # if request.method == 'GET':
+    #     content = Topic.objects.all()
+    #     serializer = TopicSerializer(content, many=True)
+    #     return Response(serializer.data)
+    if request.method == 'POST':
+        content = Topic.objects.filter(owner=request.data['userId']).order_by('date_added')
+        serializer = TopicSerializer(content, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def entry_api(request):
+    # if request.method == 'GET':
+    #     content = Entry.objects.all()
+    #     serializer = EntrySerializer(content, many=True)
+    #     return Response(serializer.data)
+    if request.method == 'POST':
+        content = Entry.objects.filter(topic=request.data['topicId'])
+        serializer = EntrySerializer(content, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def new_entry_api(request):
+    # if request.method == 'GET':
+    #     content = Entry.objects.all()
+    #     serializer = EntrySerializer(content, many=True)
+    #     return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = EntrySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'POST'])
+def new_topic_api(request):
+    # if request.method == 'GET':
+    #     content = Topic.objects.all()
+    #     serializer = TopicSerializer(content, many=True)
+    #     return Response(serializer.data)
+    if request.method == 'POST':
+        serializer = TopicSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)

@@ -17,6 +17,9 @@ urlpatterns = [
     url(r'^new_entry2/(?P<topic_id>\d+)/$', views.new_entry2, name='new_entry2'),
     url(r'^edit_entry2/(?P<entry_id>\d+)/$', views.edit_entry2,
         name='edit_entry2'),
-    url(r'^test/$', views.test, name='test'),
+    url(r'^topic/api$', views.topic_api, name='topic_api'),
+    url(r'^entry/api$', views.entry_api, name='entry_api'),
+    url(r'^new_entry/api$', views.new_entry_api, name='new_entry_api'),
+    url(r'^new_topic/api$', views.new_topic_api, name='new_topic_api')
 ]
 

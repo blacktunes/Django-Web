@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+﻿{% load bootstrap3 %}
 
 <!doctype html>
 <html>
@@ -12,6 +12,16 @@
 <link href="/static/new/css/index.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="/static/new/css/buttons.css">
 <script src="/static/new/js/jquery.min.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?26744f7ac6095574146b455320d83e36";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 {% bootstrap_javascript %}
 </head>
 
@@ -28,7 +38,7 @@
   <div class="main">
     <div class="head">
       <div class="second-head">
-      <h2>这是一个没啥用的网站<br/><small style="color:#727272">或许还是<a href="{% url 'introduce:tip' %}" style="color:#727272">金傲城</a>的官网？</small></h2>
+      <h2>这是一个测试用的网站<br/><small style="color:#727272">或许还是<a href="{% url 'introduce:tip' %}" style="color:#727272">金傲城</a>的官网？</small></h2>
       </div>
     </div>
     <div class="txt1">

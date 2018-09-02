@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
 {% block header %}
-  <h1>游戏简介</h1>
+<h1>游戏简介</h1>
 {% endblock header %}
 
 {% block content %}
   {% for about in abouts %}
 <div class="panel panel-default">
   <div class="panel-heading">
-  <h3>
-    {{ about.title }}
-  </h3>
+    <h3> <a data-toggle="collapse" data-parent="#accordion"
+                href="#{{ about.id }}" style="color:black;text-decoration:none;vertical-align:middle" onmouseover="this.style.text-decoration=none"> {{ about.title }} </a> </h3>
   </div>
-  <div class="panel-body">
-    {% autoescape off %}
-      {{ about.text }}
-    {% endautoescape %}
+  <div id="{{ about.id }}" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div style="max-width:600px;margin: 0 auto;">
+        {% autoescape off %}
+        {{ about.text|linebreaks }}
+        {% endautoescape %}
+      </div>
+    </div>
   </div>
 </div>
-  {% empty %}
-  <h4>然而我并没有写简介</h4>
-  {% endfor %}
+{% empty %}
+<h4>然而我并没有写简介</h4>
+{% endfor %}
 
-{% endblock %}
+{% endblock %} 
